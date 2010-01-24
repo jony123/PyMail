@@ -1,0 +1,8 @@
+# This is a list of files to ignore when commiting
+e wildcards as well
+*~
+*.swp
+
+# Can also ignore all directories and files in a directory.
+# tmp/**/* 
+# it can also ignore single files
