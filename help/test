@@ -1,0 +1,8 @@
+Usage of test is:  'test (text to send back)'
+
+Example of use:
+    Sent to me in subject line: test this is a test
+    Anything in body doesnt matter
+    
+    Sent back to you in subject line: Re: test this is a test
+    In body:test this is a test
