@@ -195,7 +195,7 @@ def userAUTH(data, authaddr):
       userdata = open('Database/users.log')
       userlines = userlines.readlines()
       userdata.close()
-      for i in range(a,b+1):
+      for i in userlines
          userdata_encrypted = userdata_encrypted + userlines[i] + '\n'
       userdata_decrypted = decryptString(userdata_encrypted)
       for x in userdata_decrypted:
@@ -209,7 +209,9 @@ def userAUTH(data, authaddr):
             passed[6] = 1
             passed[7] = databaselineinfo[2]
    except:
-      pass #Ill finsh this off here.
+      passed[6] = -1
+      passed[7] = ''
+      
 
       
       
