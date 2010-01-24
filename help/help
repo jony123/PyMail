@@ -1,5 +1,8 @@
 To get more infomation about an command send an email back with 'help (command)' in the subject line.
 ----------------------------------------
 All the possible commands are
-test  -- which the bot relays everything in the subject line back you you.
-help  -- which displays this
+'Google' - It only currently has the option search
+'GPG' - This here is what calls authenication required modules.
+
+_______________________________________________________
+These here are test modules.
