@@ -210,7 +210,7 @@ def userAUTH(data, authaddr):
             passed[6] = databaselineinfo[2]
    except:
       passed[5] = -1
-      passed[6] = ''
+      passed[6] = 0
       
 
       
@@ -234,6 +234,7 @@ def userAUTH(data, authaddr):
       return failed
 
 def decryptString(encrypted):
+   gpg = gnupg.GPG()
    decrypted_msg = str(gpg.decrypt(encrypted, passphrase=config.passphrase, always_trust = 'true')).split('\n')
    return decrypted_msg
 

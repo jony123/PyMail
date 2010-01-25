@@ -16,17 +16,9 @@ def respond(data, useraddr):
       #This is where we call the auth functions now
       if user_commands[0] == 'sendback':
          returnstr = sendback(user_commands,userauth_DE[4])
-      if userauth_DE[5] != -1:      # This is for special encrypted functions that require the user to be authenicated.
-         if userauth_DE[6] => 5:
-            pass
-         elif userauth_DE[6] => 4:
-            pass
-         elif userauth_DE[6] => 3:
-            pass
-         elif userauth_DE[6] => 2:
-            pass
-         elif userauth_DE[6] => 1:
-            pass
+      if user_commands[0] == 'check':
+         returnstr = check(userauth_DE[4]):
+            
             
       
 
@@ -37,6 +29,32 @@ def respond(data, useraddr):
 
 def sendback(commands, message):
    returnstr = 'You asked me to resend the email you sent to me but decrypted...\nhere it is\n\n'+message
+   return returnstr
+
+def check(decryptedstuff):
+   passwordhash = 'x'*len(decryptedstuff[3])
+   if decryptedstuff[5] != -1:
+      authed = 'YES'
+   else:
+      authed = 'NO'
+   if decryptedstuff[6] == 0:
+      authvalue = 'NONE'
+   elif decryptedstuff[6] == 1:
+      authvalue = 'LEVEL 1'
+   elif decryptedstuff[6] == 2:
+      authvalue = 'LEVEL 2'
+   elif decryptedstuff[6] == 3:
+      authvalue = 'LEVEL 3'
+   elif decryptedstuff[6] == 4:
+      authvalue = 'LEVEl 4'  
+   elif decryptedstuff[6] == 5:
+      authvalue = 'LEVEL 5'
+   else:
+      authvalue = 'NONE'
+   
+   
+   returnstr = 'Here is all the infomation about you i was sent.\n\nUserName = '+decryptedstuff[2]+'\nPassword = '+passwordhash+'\nAuthenicated = '+authed+'\nAuthenication Level = '+authvalue+'\n\nMESSAGE\n'+decryptedstuff[4]
+   print returnstr
    return returnstr
    
 
