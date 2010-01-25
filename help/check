@@ -1,0 +1,9 @@
+Check is just a simple tester function.  To use format the email as following then encrypt it.(For more infomation about encrypted send an email back with 'help GPG' in the subject line.
+
+email:(the email address you sent the this email from.)
+command:check
+user:(The username you registred with (Does accept random string here) )
+password:(The password you registed with (Does accept random string here) )
+[start]
+(Put whatever you want here.  As it really doesn't matter)
+[end]
