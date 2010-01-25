@@ -11,22 +11,20 @@ def respond(data, useraddr):
    failed = 'Sorry i could not authenicate you.  This is how to properly format for auth.\n\nemail:(Email you sent the auth from\ncommand:(authenication required command that you wanted to run\nuser:(username that you registred with.  In most cases it will be the email you registered with)\n(anything past this is command dependant)\n\nIf you have anymore troblues please email root@jonys.info for help.  Include everything you did.'
    userauth_DE = commands.userAUTH(data, useraddr) 
    #userauth_DE[0] is failed status,  [1] = commands, [2] = username, [3] = user password, [4] = everything inbitween the [start] and [end] tags., [5] is if the user could be auth'd and [6] is user access level.
+   print userauth_DE
    if userauth_DE[0] != -1:
       user_commands = userauth_DE[1].split()
       #This is where we call the auth functions now
       if user_commands[0] == 'sendback':
          returnstr = sendback(user_commands,userauth_DE[4])
-      if user_commands[0] == 'check':
-         returnstr = check(userauth_DE[4]):
-            
-            
-      
-
-
-
-      returnstr = failed
-   return returnstr
-
+      elif user_commands[0] == 'check':
+         returnstr = check(userauth_DE[4])
+      else:
+         returnstr = failed
+   try:
+      return returnstr
+   except:
+      return failed
 def sendback(commands, message):
    returnstr = 'You asked me to resend the email you sent to me but decrypted...\nhere it is\n\n'+message
    return returnstr
