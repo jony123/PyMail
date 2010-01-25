@@ -43,7 +43,7 @@ def respond(subject, data, useraddr):
       
    ################################################### Just marking the end of the function calling part.
    ###################################################
-   else:                  
+else:
       tore = tore + 'Sorry I\'m not sure what you want. Here\'s some commands you can do \n'
       tore = tore + '-------------------------------------\n'
       try:

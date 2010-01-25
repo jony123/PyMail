@@ -138,6 +138,7 @@ def userAUTH(data, authaddr):
       a = data[1].index('-----BEGIN PGP MESSAGE-----')
       b = data[1].index('-----END PGP MESSAGE-----')
    except:
+      print 'Failed find encrypted message'
       return failed
    encrypted_msg = ''
    gpg = gnupg.GPG()
@@ -145,8 +146,8 @@ def userAUTH(data, authaddr):
    for i in range(a,b+1):
       encrypted_msg = encrypted_msg + data[1][i] + '\n'
    print encrypted_msg
-   decrypted_msg = decryptString(encrypted_msg)
-   #decrypted_msg = str(gpg.decrypt(encrypted_msg, passphrase=config.passphrase, always_trust = 'true')).split('\n')
+   #decrypted_msg = decryptString(encrypted_msg)
+   decrypted_msg = str(gpg.decrypt(encrypted_msg, passphrase=config.passphrase, always_trust = 'true')).split('\n')
    loop = 0
    for x in decrypted_msg:
       found = x.find('email')
@@ -157,11 +158,13 @@ def userAUTH(data, authaddr):
    if decrypted_msg[loop].find('email') != -1:
       enemail = decrypted_msg[loop].split(':')[1]
    else:
+      print 'failed getting email'
       return failed
    if authaddr == enemail:
       passed[0] = 1 
       passed[2] = authaddr
    else:
+      print 'failed matching emails'
       return failed
    for x in decrypted_msg:
       found = x.find('command')
@@ -171,16 +174,20 @@ def userAUTH(data, authaddr):
    if decrypted_msg[loop].find('command') != -1:
       passed[1] = decrypted_msg[loop].split(':')[1]
    else:
+      print 'failed at getting command'
       return failed
 
    for x in decrypted_msg:
       found = x.find('user')
       if found != -1:
+         print 'FOUND'
          break
       loop = loop + 1
+   print decrypted_msg[loop]
    if decrypted_msg[loop].find('user') != -1:
       passed[2] = decrypted_msg[loop].split(':')[1]
    else:
+      print'failed at getting user'
       return failed
    for x in decrypted_msg:
       found = x.find('password')
@@ -190,12 +197,13 @@ def userAUTH(data, authaddr):
    if decrypted_msg[loop].find('password') != -1:
       passed[3] = decrypted_msg[loop].split(':')[1]
    else:
+      print 'failed at getting password.'
       return failed
    try:  #Checks if the user is registred.  If the user is it returns the access level.  This does not make it fail is it can't authenicate.  This is because some modules just need encryption but not auth.
       userdata = open('Database/users.log')
       userlines = userlines.readlines()
       userdata.close()
-      for i in userlines
+      for i in userlines:
          userdata_encrypted = userdata_encrypted + userlines[i] + '\n'
       userdata_decrypted = decryptString(userdata_encrypted)
       for x in userdata_decrypted:
@@ -206,11 +214,11 @@ def userAUTH(data, authaddr):
       if decrypted_msg[loop].find(passed[2]) != -1:
          databaselineinfo = userdata_decrypted[loop].split()
          if databaselineinfo[0] == passed[2] and databaselineinfo[1] == passed[3]:
-            passed[6] = 1
-            passed[7] = databaselineinfo[2]
+            passed[5] = 1
+            passed[6] = databaselineinfo[2]
    except:
-      passed[6] = -1
-      passed[7] = ''
+      passed[5] = -1
+      passed[6] = 0
       
 
       
@@ -234,6 +242,7 @@ def userAUTH(data, authaddr):
       return failed
 
 def decryptString(encrypted):
+   gpg = gnupg.GPG()
    decrypted_msg = str(gpg.decrypt(encrypted, passphrase=config.passphrase, always_trust = 'true')).split('\n')
    return decrypted_msg
 
