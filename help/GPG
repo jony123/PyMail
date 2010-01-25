@@ -1,0 +1,21 @@
+The GPG function is auctally a caller for other functions.  To use it you just put 'GPG' in the subject line.  And then you construct the email as followed.
+
+email:(the email address you sent the this email from.)
+command:(The special GPG command you want to exicute.)
+user:(The username you registred with(Some commands will accept random strings for this))
+password:(The password you registed with(as with the user line some commands will accecpt random strings))
+[start]
+(Put stuff in here.  Anything in here is dependiant on what command you are running)
+[end]
+
+You then would encrypt this with my public key(you can obtain my public key by emailing me with 'public_key' in the subject line.
+Here is a mini howto on gpg http://dewinter.com/gnupg_howto/english/GPGMiniHowto.html .  Most linux systems will have this installed allready.  If you are on windows you will have to research it more your self.
+---------------------------------------------------------------
+Here is a list of the commands that GPG currently has.
+'sendback' - This is a simple test command that sends you back whatever was inbitween that [start] and [end] headers.  Send an email back with 'help sendback' for more infomation.
+'check' - This is another test command.  This one sends you back infomation regarding infomation about your user account.  Send an email back with 'help check' for more infomation.
+
+------------
+|***NOTE***|
+------------
+Eventually there will be a register command here.  But sadly thats still in the works.  So if you want to setup an account just email the details to jony123@jonys.info and ill fix you up.
