@@ -18,7 +18,7 @@ def respond(data, useraddr):
       if user_commands[0] == 'sendback':
          returnstr = sendback(user_commands,userauth_DE[4])
       elif user_commands[0] == 'check':
-         returnstr = check(userauth_DE[4])
+         returnstr = check(userauth_DE)
       else:
          returnstr = failed
    try:
@@ -35,17 +35,17 @@ def check(decryptedstuff):
       authed = 'YES'
    else:
       authed = 'NO'
-   if decryptedstuff[6] == 0:
+   if decryptedstuff[6] == '0':
       authvalue = 'NONE'
-   elif decryptedstuff[6] == 1:
+   elif decryptedstuff[6] == ;1':
       authvalue = 'LEVEL 1'
-   elif decryptedstuff[6] == 2:
+   elif decryptedstuff[6] == '2':
       authvalue = 'LEVEL 2'
-   elif decryptedstuff[6] == 3:
+   elif decryptedstuff[6] == '3':
       authvalue = 'LEVEL 3'
-   elif decryptedstuff[6] == 4:
+   elif decryptedstuff[6] == '4':
       authvalue = 'LEVEl 4'  
-   elif decryptedstuff[6] == 5:
+   elif decryptedstuff[6] == '5':
       authvalue = 'LEVEL 5'
    else:
       authvalue = 'NONE'
