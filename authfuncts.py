@@ -37,7 +37,7 @@ def check(decryptedstuff):
       authed = 'NO'
    if decryptedstuff[6] == '0':
       authvalue = 'NONE'
-   elif decryptedstuff[6] == ;1':
+   elif decryptedstuff[6] == '1':
       authvalue = 'LEVEL 1'
    elif decryptedstuff[6] == '2':
       authvalue = 'LEVEL 2'
