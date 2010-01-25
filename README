@@ -8,3 +8,4 @@ day just isn't today.
 
 pymail.py is the main program.  TO start it exicute 'python pymail.py'
 To exicute it as a normal program In linux do 'chmod -x pymail.py'.  You can then run it via ./pymail
+--testing fetch--
