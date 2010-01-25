@@ -44,8 +44,12 @@ def respond(subject, data, useraddr):
    ################################################### Just marking the end of the function calling part.
    ###################################################
    else:                  
-      tore = 'Sorry I\'m not sure what you want.  Next time email me a single \'help\' in the subject line to list alll available commands'
-      pass
+      tore = 'Sorry I\'m not sure what you want. Here\'s some commands you can do \n'
+      tore = '-------------------------------------\n'
+      try:
+         tore = tore + commands.gethelp(phrase[1])
+      except:
+         tore = tore + commands.gethelp(phrase[0])
    return tore
 
 
