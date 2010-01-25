@@ -4,5 +4,7 @@ All the possible commands are
 'Google' - It only currently has the option search
 'GPG' - This here is what calls authenication required modules.
 
-_______________________________________________________
-These here are test modules.
+----------------------------------------
+Here is a list of all the functions you can call with GPG.  (Send back 'help GPG' for more info)
+'sendback' - Is a simple test function that sends you back an unencrypted copy of whats inbitween the [start] and [end] tags.
+'check' - Is a another simple test function that sends you back infomation about your registed account.
