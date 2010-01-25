@@ -206,11 +206,11 @@ def userAUTH(data, authaddr):
       if decrypted_msg[loop].find(passed[2]) != -1:
          databaselineinfo = userdata_decrypted[loop].split()
          if databaselineinfo[0] == passed[2] and databaselineinfo[1] == passed[3]:
-            passed[6] = 1
-            passed[7] = databaselineinfo[2]
+            passed[5] = 1
+            passed[6] = databaselineinfo[2]
    except:
-      passed[6] = -1
-      passed[7] = ''
+      passed[5] = -1
+      passed[6] = ''
       
 
       
