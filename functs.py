@@ -34,11 +34,6 @@ def respond(subject, data, useraddr):
       tore = pubkey(data)
    elif phrase[0] == 'timer':
       tore = newTimer(useraddr, phrase[1])
-   if m:
-      print 'Match found: ', m.group()
-   else:
-      print 'No match'
-      
    elif phrase[0] == 'GPG':          #This is where the auth functions are called
       gpg = gnupg.GPG()
       tore = authfuncts.respond(data ,useraddr)
