@@ -93,34 +93,32 @@ def gethelp(withthis):
    
 def normalPop(server, user, userpass):
    conn = poplib.POP3(config.pop_server)
-   print "Connecting to POP3 server"
+   #print "Connecting to POP3 server"
    conn.user(user)
    conn.pass_(userpass)
    status = conn.stat()
    status = str(status)
-   print status
+   #print status
    new = status.replace( '(', '').replace( ')', '').split( ',' ) [ 0 ]
-   print new
+   #print new
    newint = int(new)
-   print newint
+   #print newint
    if newint > 0:
       looper = 1
       while looper <= newint:
-         print looper
+         #print looper
          data = conn.retr(looper)
          conn.dele(looper)
-         print ''
-         print data
-         print ''
-         print phraseSmtp(data)
+         #print ''
+         #print data
+         #print ''
+         #print phraseSmtp(data)
          clientPool.put ( data )
-         print ''
+         #print ''
          looper = looper + 1
    else:
-      print "No new email"
-
-
-
+      pass
+      #print "No new email"
    conn.quit()
    
 def mk_nice_domain(domain):
@@ -145,17 +143,17 @@ def userAUTH(data, authaddr):
    message_sten = ''
    for i in range(a,b+1):
       encrypted_msg = encrypted_msg + data[1][i] + '\n'
-   print encrypted_msg
+   #print encrypted_msg
    #decrypted_msg = decryptString(encrypted_msg)
    decrypted_msg = str(gpg.decrypt(encrypted_msg, passphrase=config.passphrase, always_trust = 'true')).split('\n')
    loop = 0
    enemail = decrypted_msg[0].split(':')[1]
-   print decrypted_msg
+   #print decrypted_msg
    if authaddr == enemail:
       passed[0] = 1 
       passed[2] = authaddr
    else:
-      print 'failed matching emails'
+      #print 'failed matching emails'
       return failed
    try:
       passed[1] = decrypted_msg[1].split(':')[1]
@@ -170,8 +168,12 @@ def userAUTH(data, authaddr):
    except:
       return failed
    try:  #Checks if the user is registred.  If the user is it returns the access level.  This does not make it fail is it can't authenicate.  This is because some modules just need encryption but not auth.
+      print 'TRY'
       userdata = open('Database/users.log')
-      userlines = userlines.readlines()
+      userlines = userdata.readlines()
+      print '--------------Userdatabase-----------'
+      print userlines
+      print '-------------------------------------'
       userdata.close()
       for i in userlines:
          userdata_encrypted = userdata_encrypted + userlines[i] + '\n'
@@ -181,12 +183,16 @@ def userAUTH(data, authaddr):
          if found != -1:
             break
          loop = loop + 1
+      print userdata_decrypted[loop]   
       if userdata_decrypted[loop].find(passed[2]) != -1:
          databaselineinfo = userdata_decrypted[loop].split()
+         print databaselineinfo
          if databaselineinfo[0] == passed[2] and databaselineinfo[1] == passed[3]:
             passed[5] = 1
             passed[6] = databaselineinfo[2]
+         print passed[5] +'  '+ passed[6]
    except:
+      print "FAILED"
       passed[5] = -1
       passed[6] = 0
       
@@ -194,21 +200,21 @@ def userAUTH(data, authaddr):
       
       
    try:
-      print 'try'
-      print decrypted_msg
+      #print 'try'
+      #print decrypted_msg
       c = decrypted_msg.index('[start]')
-      print c
+      #print c
       d = decrypted_msg.index('[end]') 
       messafe_sten = ''
-      print d
+      #print d
       for i in range(c+1,d):
          message_sten = message_sten + decrypted_msg[i] + '\n'
-         print message_sten  
-      passed[5] = message_sten
-      print passed
+         #print message_sten  
+      passed[4] = message_sten
+      #print passed
       return passed 
    except:
-      print 'failed at trying to get the message'
+      #print 'failed at trying to get the message'
       return failed
 
 def decryptString(encrypted):
