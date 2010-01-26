@@ -8,6 +8,7 @@ import authfuncts
 from xgoogle.search import GoogleSearch
 from urlparse import urlparse
 import gnupg
+import pymail-timer # My timer, I hope this works, I haven't used import on local files before
 
 def respond(subject, data, useraddr):
    phrase = subject.split()
@@ -31,6 +32,12 @@ def respond(subject, data, useraddr):
    elif phrase[0] == 'public_key':
       print "Called public_key"
       tore = pubkey(data)
+   elif phrase[0] == 'timer':
+      tore = newTimer(useraddr, phrase[1])
+   if m:
+      print 'Match found: ', m.group()
+   else:
+      print 'No match'
       
    elif phrase[0] == 'GPG':          #This is where the auth functions are called
       gpg = gnupg.GPG()

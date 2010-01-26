@@ -22,16 +22,20 @@ def getNowSecs():
 
 # Returns the number of seconds till the timer goes off
 def newTimer(email, minsToAlarm):
+    # probably should run the mins to alarm under some checks
+    # to make sure they where numbers and numbers only
+    tore  = 'Added a new Timer\n'
     #get now's time in seconds
     nowSecs = getNowSecs()
     alarmSecs = nowSecs + minsToAlarm * 60.0
     #saves a new timer to the end of the file
     dbfile = open('Database/timers.log' , 'a')
     toWrite = email + " " + str(alarmSecs) + " \n"
-    print "writing: " + toWrite
     dbfile.write(toWrite)
     dbfile.close()
-    return alarmSecs #this should probably store the timer somhow
+    tore += 'your timer will go off in, ' + str(minsToAlarm) + ' mins\n'
+    tore += 'we\'ll send you an email then!'
+    return tore
 
 def logClean():
     print "---Logclean---"
@@ -52,9 +56,10 @@ def logClean():
     dbfile.close()
     dbfile = open('Database/timers.log' , 'w')
     for line in cleanLines:
-        print "writing: " 
-        print line
-        print line.__class__
+	#you probably don't want this showing up
+        #print "writing: " 
+        #print line
+        #print line.__class__
         dbfile.write(str(line))
 
     dbfile.close()
