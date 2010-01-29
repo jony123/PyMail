@@ -1,11 +1,20 @@
-### WARNING  WARNING ***
-This is the EXPERIMENT version of PyMail.  It is considered VERY unstable.
+### WARNING ###
+This is the testing branch of PyMail and is considered VERY unstable.  I would definantly recommend against using this in a production enviroment(Or even using it at all).  I would rather you use the master branch which is considered much stabler.
 
+Offical repository for PyMail:  http://github.com/pymail
+Offical blog for PyMail:   http://pymail.jonys.info
+My offical blog: (jony123)  http://jonys.info
 
+List of contributers.
+Me(jony123)
+Gage Peterson(justgage or gage)
+(If you would wish to write some code for PyMail.  I welcome you to write an example of the code and what it would do and send it to jony123@jonys.info .  Your name will be featured here if you do)
 
-This is auctally a test for the github.  Really this will have something useful in it one day.  That 
-day just isn't today.
+List of Features.
+Well there isn't much yet.  but...
+It has builtin support to google.  See help/google
+It has authenication abiltys.
 
-pymail.py is the main program.  TO start it exicute 'python pymail.py'
-To exicute it as a normal program In linux do 'chmod -x pymail.py'.  You can then run it via ./pymail
---testing fetch--
+If all this setup seems to complex for you.  I can offer setups on my server. (For a cost).  
+
+Anything else feel free to visit the PyMail blog or you can email me directly at jony123@jonys.info

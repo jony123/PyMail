@@ -19,7 +19,7 @@ import gnupg
 import threading
 import Queue
 
-# This below is just classes and seutuff for the threading stuff.  Not to import but i wouldnt advise messing around with it unless you know what your doing.
+# This below is just classes and seutuff for the threading stuff.  Not to important but i wouldnt advise messing around with it unless you know what your doing.
 class emaildo( threading.Thread ):
    def run ( self ):
       print self.getName()+'  Is up'
@@ -27,8 +27,11 @@ class emaildo( threading.Thread ):
          data = clientPool.get()
          if data != None:
             print self.getName()+'  Is acting on an email'
-            message = functs.respond(getSubject(data[1]), data, phraseSmtp(data))
-            sendEmail(phraseSmtp(data), config.myemail, writeEmail(phraseSmtp(data), config.myemail, 'Re: '+getSubject(data[1]),  message).as_string())
+            getdsubject = getSubject(data[1])
+            phrasesmtpd = phraseSmtp(data)
+            message = functs.respond(getdsubject, data, phrasesmtpd)
+            writeemails = writeEmail(phrasesmtpd, config.myemail, 'Re: '+getdsubject,  message).as_string()
+            sendEmail(phrasesmtpd, config.myemail, writeemails)
 
 
 
@@ -64,7 +67,7 @@ def sendEmail( fromadd, toadd, msg):
 
 def writeEmail(to, fromuser, sub, msg1):   
    # Create the container (outer) email message. 
-   msg = MIMEText(msg1+"\r\n\nFrom\r\nPyMail")   
+   msg = MIMEText(msg1+"\n\nFrom\nPyMail")   
    msg['Subject'] = sub       
    msg['From'] = fromuser
    msg['To'] = to
