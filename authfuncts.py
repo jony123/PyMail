@@ -2,7 +2,7 @@
 import functs
 import commands
 import config
-import gnupg
+#import gnupg
 
 """
 This file will be where we put all our custom functions that require auth.  Its up to you to pass the correct arguments.

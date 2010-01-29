@@ -7,8 +7,7 @@ import config
 import authfuncts
 from xgoogle.search import GoogleSearch
 from urlparse import urlparse
-import gnupg
-import pymail-timer # My timer, I hope this works, I haven't used import on local files before
+#import gnupg
 
 def respond(subject, data, useraddr):
    phrase = subject.split()
@@ -32,10 +31,9 @@ def respond(subject, data, useraddr):
    elif phrase[0] == 'public_key':
       print "Called public_key"
       tore = pubkey(data)
-   elif phrase[0] == 'timer':
-      tore = newTimer(useraddr, phrase[1])
+      
    elif phrase[0] == 'GPG':          #This is where the auth functions are called
-      gpg = gnupg.GPG()
+      #gpg = gnupg.GPG()
       tore = authfuncts.respond(data ,useraddr)
 
       
@@ -46,7 +44,7 @@ def respond(subject, data, useraddr):
    ################################################### Just marking the end of the function calling part.
    ###################################################
    else:
-      tore = tore + 'Sorry I\'m not sure what you want. Here\'s some commands you can do \n'
+      tore = 'Sorry I\'m not sure what you want. Here\'s some commands you can do \n'
       tore = tore + '-------------------------------------\n'
       try:
          tore = tore + commands.gethelp(phrase[1])
@@ -118,7 +116,8 @@ def google(data):  #In this fuction we will do the phrasing of the subject line 
    return tore
 
 def pubkey(data):
-   gpg = gnupg.GPG()
-   tore = 'Here is my public key.  Use it to encrypt the infomation you send to me. \nP.s if you don\' know whats this is for you probally don\' need it\n\n'+gpg.export_keys('jonathon')
+   #gpg = gnupg.GPG()
+   #tore = 'Here is my public key.  Use it to encrypt the infomation you send to me. \nP.s if you don\' know whats this is for you probally don\' need it\n\n'+gpg.export_keys('jonathon')
+   tore='entryption off'
    return tore
    

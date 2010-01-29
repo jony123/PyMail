@@ -15,7 +15,7 @@ import poplib
 import config
 import functs
 import re
-import gnupg
+#import gnupg
 import threading
 import Queue
 
@@ -141,13 +141,14 @@ def userAUTH(data, authaddr):
       print 'Failed find encrypted message'
       return failed
    encrypted_msg = ''
-   gpg = gnupg.GPG()
+   ##gpg = gnupg.GPG()
    message_sten = ''
    for i in range(a,b+1):
       encrypted_msg = encrypted_msg + data[1][i] + '\n'
    print encrypted_msg
    #decrypted_msg = decryptString(encrypted_msg)
-   decrypted_msg = str(gpg.decrypt(encrypted_msg, passphrase=config.passphrase, always_trust = 'true')).split('\n')
+   #decrypted_msg = str(gpg.decrypt(encrypted_msg, passphrase=config.passphrase, always_trust = 'true')).split('\n')
+   decrypted_msg = str(encrypted_msg).split('\n')
    loop = 0
    for x in decrypted_msg:
       found = x.find('email')
@@ -242,8 +243,9 @@ def userAUTH(data, authaddr):
       return failed
 
 def decryptString(encrypted):
-   gpg = gnupg.GPG()
-   decrypted_msg = str(gpg.decrypt(encrypted, passphrase=config.passphrase, always_trust = 'true')).split('\n')
+   decrypted_msg = encrypted
+   #gpg = gnupg.GPG()
+   #decrypted_msg = str(gpg.decrypt(encrypted, passphrase=config.passphrase, always_trust = 'true')).split('\n')
    return decrypted_msg
 
 
